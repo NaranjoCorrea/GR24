@@ -140,7 +140,7 @@
                 <td>4,38/P</td>
                 <td><input type="number" id="booksEnglish" oninput="updateScores()"></td>
                 <td><span id="partial-booksEnglish">0</span></td>
-                <td><span id="total-books">0</span></td>
+                <td><span id="total-booksEnglish">0</span></td>
             </tr>
             <tr>
                 <td>Capítulos de libro en español</td>
@@ -154,7 +154,7 @@
                 <td>1,25/P</td>
                 <td><input type="number" id="bookChaptersEnglish" oninput="updateScores()"></td>
                 <td><span id="partial-bookChaptersEnglish">0</span></td>
-                <td><span id="total-bookChapters">0</span></td>
+                <td><span id="total-bookChaptersEnglish">0</span></td>
             </tr>
             <tr>
                 <td colspan="5" style="text-align: left; background-color: #fce5cd;">Captación de Recursos de I+D+i</td>
@@ -205,7 +205,7 @@
                 <td rowspan="3"><span id="total-phdTheses">0</span></td>
             </tr>
             <tr>
-                <td>Dirección Tesis defendidas con Doctor Europeo y premio extraordinario</td>
+                <td>Dirección Tesis defendidas con Doctor Europeo</td>
                 <td>1,00/T</td>
                 <td><input type="number" id="phdThesesEuropean" oninput="updateScores()"></td>
                 <td><span id="partial-phdThesesEuropean">0</span></td>
@@ -319,9 +319,9 @@
                 totalScores.jcr += score;
             } else if (field.id.startsWith('scopus')) {
                 totalScores.scopus += score;
-            } else if (field.id.startsWith('fecyt')) {
+            } else if (field.id === 'fecyt') {
                 totalScores.fecyt += score;
-            } else if (field.id.startsWith('dialnet')) {
+            } else if (field.id === 'dialnet') {
                 totalScores.dialnet += score;
             } else if (field.id.startsWith('books')) {
                 totalScores.books += score;
@@ -329,13 +329,13 @@
                 totalScores.bookChapters += score;
             } else if (field.id.startsWith('funding')) {
                 totalScores.funding += score;
-            } else if (field.id.startsWith('patents')) {
+            } else if (field.id === 'patents') {
                 totalScores.patents += score;
             } else if (field.id.startsWith('phdTheses')) {
                 totalScores.phdTheses += score;
-            } else if (field.id.startsWith('femaleLeader') || field.id.startsWith('youngLeader')) {
+            } else if (field.id === 'femaleLeader' || field.id === 'youngLeader') {
                 totalScores.coordination += score;
-            } else if (field.id.startsWith('universityInstitute')) {
+            } else if (field.id === 'universityInstitute') {
                 totalScores.universityInstitute += score;
             }
         });
@@ -352,7 +352,7 @@
         document.getElementById('total-coordination').innerText = totalScores.coordination.toFixed(2);
         document.getElementById('total-universityInstitute').innerText = totalScores.universityInstitute.toFixed(2);
 
-        const finalScore = totalScores.jcr + totalScores.scopus + totalScores.fecyt + totalScores.dialnet + totalScores.books + totalScores.bookChapters + totalScores.funding + totalScores.patents + totalScores.phdTheses + totalScores.coordination + totalScores.universityInstitute;
+        const finalScore = Object.values(totalScores).reduce((acc, curr) => acc + curr, 0);
         document.getElementById('finalScore').innerText = finalScore.toFixed(2);
     }
 </script>
