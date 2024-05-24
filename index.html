@@ -49,7 +49,7 @@
 </head>
 <body>
 <div class="container">
-    <h1>Evaluación de Grupos de Investigación</h1>
+    <h1 style="text-align: center;">Evaluación de Grupos de Investigación</h1>
     <table>
         <thead>
             <tr>
@@ -299,8 +299,10 @@
             scopus: 0,
             fecyt: 0,
             dialnet: 0,
-            books: 0,
-            bookChapters: 0,
+            books: 0,         
+            booksEnglish: 0,
+            bookChapters: 0,  
+            bookChaptersEnglish: 0,
             funding: 0,
             patents: 0,
             phdTheses: 0,
@@ -324,9 +326,13 @@
             } else if (field.id.startsWith('dialnet')) {
                 totalScores.dialnet += score;
             } else if (field.id.startsWith('books')) {
-                totalScores.books += score;
+                totalScores.books += score;            
+            } else if (field.id.startsWith('booksEnglish')) {
+                totalScores.booksEnglish += score;
             } else if (field.id.startsWith('bookChapters')) {
-                totalScores.bookChapters += score;
+                totalScores.bookChapters += score;            
+            } else if (field.id.startsWith('bookChaptersEnglish')) {
+                totalScores.bookChaptersEnglish += score;
             } else if (field.id.startsWith('funding')) {
                 totalScores.funding += score;
             } else if (field.id.startsWith('patents')) {
@@ -344,15 +350,17 @@
         document.getElementById('total-scopus').innerText = totalScores.scopus.toFixed(2);
         document.getElementById('total-fecyt').innerText = totalScores.fecyt.toFixed(2);
         document.getElementById('total-dialnet').innerText = totalScores.dialnet.toFixed(2);
-        document.getElementById('total-books').innerText = totalScores.books.toFixed(2);
+        document.getElementById('total-books').innerText = totalScores.books.toFixed(2);        
+        document.getElementById('total-booksEnglish').innerText = totalScores.booksEnglish.toFixed(2);
         document.getElementById('total-bookChapters').innerText = totalScores.bookChapters.toFixed(2);
+        document.getElementById('total-bookChaptersEnglish').innerText = totalScores.bookChaptersEnglish.toFixed(2);
         document.getElementById('total-funding').innerText = totalScores.funding.toFixed(2);
         document.getElementById('total-patents').innerText = totalScores.patents.toFixed(2);
         document.getElementById('total-phdTheses').innerText = totalScores.phdTheses.toFixed(2);
         document.getElementById('total-coordination').innerText = totalScores.coordination.toFixed(2);
         document.getElementById('total-universityInstitute').innerText = totalScores.universityInstitute.toFixed(2);
 
-        const finalScore = totalScores.jcr + totalScores.scopus + totalScores.fecyt + totalScores.dialnet + totalScores.books + totalScores.bookChapters + totalScores.funding + totalScores.patents + totalScores.phdTheses + totalScores.coordination + totalScores.universityInstitute;
+        const finalScore = totalScores.jcr + totalScores.scopus + totalScores.fecyt + totalScores.dialnet + totalScores.books +t otalScores.booksEnglish + totalScores.bookChapters + totalScores.bookChaptersEnglish + totalScores.funding + totalScores.patents + totalScores.phdTheses + totalScores.coordination + totalScores.universityInstitute;
         document.getElementById('finalScore').innerText = finalScore.toFixed(2);
     }
 </script>
